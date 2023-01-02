@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import axios from 'axios';
 
 interface Salary {
@@ -25,7 +25,7 @@ export class AppService {
     } catch(error) {
       const status = error?.response?.status || 500;
 
-      throw new HttpException({
+      throw new BadRequestException({
         status,
         error: error?.response?.statusText || 'Internal server error',
       }, status)
